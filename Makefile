@@ -28,7 +28,7 @@ container: build_container
 build: submodule
 	rm -rf $(BUILD_DIR)
 	cp -R upstream $(BUILD_DIR)
-	cd $(BUILD_DIR) && go build -o slacker
+	cd $(BUILD_DIR) && go build -o slacker -ldflags "-linkmode external -extldflags -static"
 	mkdir -p $(RELEASE_DIR)/usr/bin $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)
 	cp upstream/LICENSE $(RELEASE_DIR)/usr/share/licenses/$(PACKAGE)/LICENSE
 	cp $(BUILD_DIR)/slacker $(RELEASE_DIR)/usr/bin/
