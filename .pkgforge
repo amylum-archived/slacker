@@ -1,0 +1,12 @@
+name 'slacker'
+org 'amylum'
+
+build do
+  run 'go build -o slacker --ldflags "-linkmode external"', 'CC' => 'musl-gcc'
+  run "mkdir -p #{releasedir}/usr/bin"
+  run "cp slacker #{releasedir}/usr/bin/"
+end
+
+test do
+  run 'slacker 00:00:00:00:00:00'
+end
